@@ -8,6 +8,7 @@ import About from '@/views/About.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '/', redirect: '/future' },
   {
     path: '/future',
     name: 'Я сдам',

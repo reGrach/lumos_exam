@@ -8,7 +8,7 @@ namespace LumosService.API.Controllers
 {
     public class ExamController : DefaultController
     {
-        private const string errorFutureExams = "У вас нет запланированных экзаменов";
+        private const string errorFutureExams = "У Вас нет запланированных экзаменов";
         private const string errorPassedExams = "Вы еще не сдали ни одного экзамена";
 
         public ExamController(LumosContext context) : base(context) { }
@@ -24,7 +24,8 @@ namespace LumosService.API.Controllers
         {
             try
             {
-                var res = ctx.Exams
+                var res = ctx.Exam
+                    .Include("Questions")
                     .Where(x => x.Mark == Mark.NotPassed)
                     .ToList();
                 if (res.Any())
