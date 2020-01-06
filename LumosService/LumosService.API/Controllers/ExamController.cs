@@ -1,6 +1,7 @@
 ﻿using LumosService.API.Models;
 using LumosService.DAL;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -45,6 +46,7 @@ namespace LumosService.API.Controllers
             try
             {
                 var res = ctx.Exams
+                    .Include("Questions")
                     .Where(x => x.Mark != Mark.NotPassed)
                     .ToList();
                 if (res.Any())
