@@ -24,7 +24,7 @@ namespace LumosService.API.Controllers
         {
             try
             {
-                var res = ctx.Exam
+                var res = ctx.Exams
                     .Include("Questions")
                     .Where(x => x.Mark == Mark.NotPassed)
                     .ToList();
