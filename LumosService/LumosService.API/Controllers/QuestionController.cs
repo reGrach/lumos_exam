@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LumosService.API.Models;
+﻿using LumosService.API.Models;
 using LumosService.DAL;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace LumosService.API.Controllers
 {
     public class QuestionController : DefaultController
     {
-        private const string errorGetQuestion = "В системе не обнаружен вопрос с id: {0}";
+        private const string errorGetQuestion = "Фатальная ошибка, обратитесь к Гере. В системе не обнаружен вопрос с id: {0}";
 
         public QuestionController(LumosContext context) : base(context) { }
 
