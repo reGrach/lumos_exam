@@ -11,7 +11,7 @@ namespace LumosService.API.Controllers
 
         public QuestionController(LumosContext context) : base(context) { }
 
-        [HttpPost("{id}")]
+        [HttpPost]
         public ActionResult<JsonResultResponse> UpdateStatus(StatusModel model)
         {
             try
