@@ -44,9 +44,15 @@ namespace LumosService.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseRouting();
             app.UseCors("CorsPolicy");
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
