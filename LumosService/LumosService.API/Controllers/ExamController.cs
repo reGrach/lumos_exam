@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LumosService.API.Models;
+﻿using LumosService.API.Models;
 using LumosService.DAL;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace LumosService.API.Controllers
 {
     public class ExamController : DefaultController
     {
-        private const string emptyExams = "В системе не обнаружено экзаменов";
-        private const string errorGetExam = "В системе не обнаружен экзамен с id: {0}";
+        private const string errorFutureExams = "У вас нет запланированных экзаменов";
+        private const string errorPassedExams = "Вы еще не сдали ни одного экзамена";
 
         public ExamController(LumosContext context) : base(context) { }
 
@@ -23,15 +20,17 @@ namespace LumosService.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<JsonResultResponse> GetAll()
+        public ActionResult<JsonResultResponse> GetFuture()
         {
             try
             {
-                var res = ctx.Exams.Select(x => new ExamEasy { Id = x.Id, Title = x.Title }).ToList();
+                var res = ctx.Exams
+                    .Where(x => x.Mark == Mark.NotPassed)
+                    .ToList();
                 if (res.Any())
                     return JsonResultResponse.Ok(res);
                 else
-                    return JsonResultResponse.Bad(emptyExams);
+                    return JsonResultResponse.Bad(errorFutureExams);
             }
             catch (Exception)
             {
@@ -39,15 +38,18 @@ namespace LumosService.API.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<JsonResultResponse> GetById(int id)
+        [HttpGet]
+        public ActionResult<JsonResultResponse> GetPassed()
         {
             try
             {
-                if (ctx.Exams.Find(id) is Exam exam)
-                    return JsonResultResponse.Ok(exam);
+                var res = ctx.Exams
+                    .Where(x => x.Mark != Mark.NotPassed)
+                    .ToList();
+                if (res.Any())
+                    return JsonResultResponse.Ok(res);
                 else
-                    return JsonResultResponse.Bad(string.Format(errorGetExam, id));
+                    return JsonResultResponse.Bad(errorPassedExams);
             }
             catch (Exception)
             {

@@ -8,7 +8,7 @@
         public bool IsClear { get; set; }
         public bool IsWritten { get; set; }
         public bool IsLearned { get; set; }
+        public bool IsDeferred { get; set; }
         public Exam Exam { get; set; }
-
     }
 }
