@@ -41,7 +41,7 @@ export default {
   },
 
   data: () => ({
-    alert: true,
+    alert: false,
     error: null,
     colorQuestion: "#006064",
     statusEnum: Object.freeze({

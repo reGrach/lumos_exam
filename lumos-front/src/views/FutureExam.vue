@@ -20,7 +20,7 @@ export default {
   data: () => ({
     exams: null,
     error: null,
-    alert: true
+    alert: false
   }),
 
   mounted() {
