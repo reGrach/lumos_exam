@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
         <v-list-item link to="/future">
@@ -31,7 +31,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="indigo" dark>
+    <v-app-bar color="indigo" app dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{currentRouteName}}</v-toolbar-title>
     </v-app-bar>
@@ -40,7 +40,7 @@
       <router-view />
     </v-content>
 
-    <v-footer color="indigo" app>
+    <v-footer color="indigo" app fixed>
       <span class="white--text">&copy; Твой reGrach - 2020</span>
     </v-footer>
   </v-app>

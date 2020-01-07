@@ -18,8 +18,7 @@ export function getPassed() {
     return instance.get('/exam/getpassed')
 }
 
-export function updateStatus(isStart, id_team) {
-    const data = {id: id_team};
-    const endUrl = isStart ? 'setFinish' : 'setStart';
-    return instance.post('/question/' + endUrl, data)
+export function updateStatus(idQuest, val, status) {
+    const data = { questionId: idQuest, value: val, Status: status };
+    return instance.post('/question/updatestatus', data)
 }
