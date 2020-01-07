@@ -1,5 +1,10 @@
 <template>
   <v-card :color="colorQuestion" dark>
+    <div>
+      <v-alert v-model="alert" dense outlined type="error" dismissible>
+        <strong>{{error}}</strong>
+      </v-alert>
+    </div>
     <v-badge color="green" :content="number" left :offset-x="15" :offset-y="15">
       <v-card-subtitle class="text-justify">{{quest.text}}</v-card-subtitle>
     </v-badge>
@@ -36,6 +41,8 @@ export default {
   },
 
   data: () => ({
+    alert: true,
+    error: null,
     colorQuestion: "#006064",
     statusEnum: Object.freeze({
       isClear: 1,
@@ -79,25 +86,9 @@ export default {
               break;
           }
         })
-        .catch(error => console.log(error));
-    },
-
-    changStatus(item, status) {
-      console.log("Pfikb");
-      switch (status) {
-        case this.statusEnum.isClear:
-          item.isClear = !item.isClear;
-          break;
-        case this.statusEnum.isWritten:
-          item.isWritten = !item.isWritten;
-          break;
-        case this.statusEnum.isLearned:
-          item.isLearned = !item.isLearned;
-          break;
-        case this.statusEnum.isDeffered:
-          item.isDeffered = !item.isDeffered;
-          break;
-      }
+        .catch(() => {
+          this.error = "Не получилось...( Обратись к Гере.";
+        });
     }
   }
 };
