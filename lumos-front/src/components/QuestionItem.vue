@@ -5,18 +5,19 @@
         <strong>{{error}}</strong>
       </v-alert>
     </div>
+
     <v-badge color="green" :content="number" left :offset-x="15" :offset-y="15">
-      <v-card-subtitle class="text-justify">{{quest.text}}</v-card-subtitle>
+      <v-card-text style="padding-bottom:0; padding-top:6px" class="text-justify" v-html="quest.text"></v-card-text>
     </v-badge>
 
-    <v-card-actions>
-      <v-btn icon @click="updateStatusQuest(quest.id, quest.isClear, statusEnum.isClear)">
-        <v-icon v-if="getClear" color="green">mdi-emoticon-outline</v-icon>
-        <v-icon v-else color="red">mdi-emoticon-frown-outline</v-icon>
-      </v-btn>
-
+    <v-card-actions style="padding-top:0">
       <v-btn icon @click="updateStatusQuest(quest.id, quest.isWritten, statusEnum.isWritten)">
         <v-icon :color="getWritten">mdi-pencil</v-icon>
+      </v-btn>
+
+      <v-btn icon @click="updateStatusQuest(quest.id, quest.isLearned, statusEnum.isLearned)">
+        <v-icon v-if="getLearned" color="green">mdi-emoticon-outline</v-icon>
+        <v-icon v-else color="red">mdi-emoticon-frown-outline</v-icon>
       </v-btn>
 
       <v-spacer></v-spacer>
@@ -48,14 +49,11 @@ export default {
   }),
 
   computed: {
-    getClear() {
-      return this.quest.isClear ? true : false;
+    getLearned() {
+      return this.quest.isLearned ? true : false;
     },
     getWritten() {
       return this.quest.isWritten ? "green" : "red";
-    },
-    getLearned() {
-      return this.quest.isLearned ? "green" : "red";
     },
     getDeferred() {
       return this.quest.isDeferred ? "yellow" : "white";
@@ -67,9 +65,6 @@ export default {
       updateStatus(id, !val, status)
         .then(() => {
           switch (status) {
-            case this.statusEnum.isClear:
-              this.quest.isClear = !this.quest.isClear;
-              break;
             case this.statusEnum.isWritten:
               this.quest.isWritten = !this.quest.isWritten;
               break;
