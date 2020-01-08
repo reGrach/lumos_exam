@@ -9,8 +9,7 @@
 
     public enum StatusQuestionEnum
     {
-        IsClear = 1,
-        IsWritten,
+        IsWritten = 1,
         IsLearned,
         IsDeffered
     }

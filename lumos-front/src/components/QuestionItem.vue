@@ -41,10 +41,9 @@ export default {
     error: null,
     colorQuestion: "#006064",
     statusEnum: Object.freeze({
-      isClear: 1,
-      isWritten: 2,
-      isLearned: 3,
-      isDeferred: 4
+      isWritten: 1,
+      isLearned: 2,
+      isDeferred: 3
     })
   }),
 

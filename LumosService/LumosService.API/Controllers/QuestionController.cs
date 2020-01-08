@@ -20,15 +20,17 @@ namespace LumosService.API.Controllers
                 {
                     switch (model.Status)
                     {
-                        case StatusQuestionEnum.IsClear:
-                            quest.IsClear = model.Value;
-                            break;
                         case StatusQuestionEnum.IsLearned:
                             quest.IsLearned = model.Value;
                             break;
                         case StatusQuestionEnum.IsWritten:
                             quest.IsWritten = model.Value;
                             break;
+                        case StatusQuestionEnum.IsDeffered:
+                            quest.IsDeffered = model.Value;
+                            break;
+                        default:
+                            throw new Exception("Не существует такого статуса!");
                     }
                     ctx.SaveChanges();
                     return Ok();
