@@ -19,13 +19,9 @@
         <v-icon :color="getWritten">mdi-pencil</v-icon>
       </v-btn>
 
-      <v-btn icon @click="updateStatusQuest(quest.id, quest.isLearned, statusEnum.isLearned)">
-        <v-icon :color="getLearned">mdi-thumb-up</v-icon>
-      </v-btn>
-
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="updateStatusQuest(quest.id, quest.isDeferred, statusEnum.isDeffered)">
+      <v-btn icon @click="updateStatusQuest(quest.id, quest.isDeferred, statusEnum.isDeferred)">
         <v-icon :color="getDeferred">mdi-update</v-icon>
       </v-btn>
     </v-card-actions>
@@ -48,7 +44,7 @@ export default {
       isClear: 1,
       isWritten: 2,
       isLearned: 3,
-      isDeffered: 4
+      isDeferred: 4
     })
   }),
 
@@ -63,7 +59,8 @@ export default {
       return this.quest.isLearned ? "green" : "red";
     },
     getDeferred() {
-      return this.quest.isDeffered ? "yellow" : "white";
+      console.log(this.quest.isDeferred)
+      return this.quest.isDeferred ? "yellow" : "white";
     }
   },
 
@@ -81,8 +78,8 @@ export default {
             case this.statusEnum.isLearned:
               this.quest.isLearned = !this.quest.isLearned;
               break;
-            case this.statusEnum.isDeffered:
-              this.quest.isDeffered = !this.quest.isDeffered;
+            case this.statusEnum.isDeferred:
+              this.quest.isDeferred = !this.quest.isDeferred;
               break;
           }
         })
