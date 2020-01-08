@@ -58,7 +58,6 @@ export default {
       return this.quest.isLearned ? "green" : "red";
     },
     getDeferred() {
-      console.log(this.quest.isDeferred)
       return this.quest.isDeferred ? "yellow" : "white";
     }
   },
