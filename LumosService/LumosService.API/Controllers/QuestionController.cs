@@ -26,8 +26,8 @@ namespace LumosService.API.Controllers
                         case StatusQuestionEnum.IsWritten:
                             quest.IsWritten = model.Value;
                             break;
-                        case StatusQuestionEnum.IsDeffered:
-                            quest.IsDeffered = model.Value;
+                        case StatusQuestionEnum.IsDeferred:
+                            quest.IsDeferred = model.Value;
                             break;
                         default:
                             throw new Exception("Не существует такого статуса!");

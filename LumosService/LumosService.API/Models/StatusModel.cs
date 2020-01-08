@@ -11,6 +11,6 @@
     {
         IsWritten = 1,
         IsLearned,
-        IsDeffered
+        IsDeferred
     }
 }
